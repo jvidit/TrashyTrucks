@@ -9,5 +9,6 @@ public class GameAssets : MonoBehaviour
     {
         instance = this;
     }
-    public Sprite snakeHeadSprite;
+    public Sprite truckSprite;
+    public Sprite garbageSprite;
 }

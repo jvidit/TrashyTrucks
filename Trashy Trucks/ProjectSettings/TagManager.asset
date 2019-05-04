@@ -38,12 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: ArenaLayer
     uniqueID: 1220231133
     locked: 0
   - name: TruckLayer
     uniqueID: 1884569529
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
