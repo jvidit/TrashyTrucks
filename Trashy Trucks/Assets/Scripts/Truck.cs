@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Truck : MonoBehaviour
 {
-    private Vector2Int gridMoveDirection;
-    private Vector2Int gridPosition;
+    private Vector2 gridMoveDirection;
+    private Vector2 gridPosition;
     private float gridMoveTimer;
     private float gridMoveTimerMax;
 
 
     private void Awake()
     {
-        gridPosition = new Vector2Int(0, 0);
-        gridMoveTimerMax = 1f;
+        gridPosition = new Vector2(0, 0);
+        gridMoveTimerMax = 0.01f;
         gridMoveTimer = gridMoveTimerMax;
-        gridMoveDirection = new Vector2Int(0, 1);
+        gridMoveDirection = new Vector2(0, 1);
 
     }
 
@@ -33,7 +33,7 @@ public class Truck : MonoBehaviour
 
 
 
-    private float GetAngleFromVector(Vector2Int dir)
+    private float GetAngleFromVector(Vector2 dir)
     {
         float ang = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         if (ang < 0)
@@ -47,7 +47,7 @@ public class Truck : MonoBehaviour
 
         if (gridMoveTimer >= gridMoveTimerMax)
         {
-            gridPosition += gridMoveDirection;
+            gridPosition += gridMoveDirection*gridMoveTimerMax;
             gridMoveTimer -= gridMoveTimerMax;
         }
         transform.position = new Vector3(gridPosition.x, gridPosition.y);

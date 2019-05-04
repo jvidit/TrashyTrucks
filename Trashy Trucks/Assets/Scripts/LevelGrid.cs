@@ -17,8 +17,14 @@ public class LevelGrid
     {
         garbageGridPosition = new Vector2Int(Random.Range(-width, width), Random.Range(-height,height));
         GameObject garbageGameObject = new GameObject("Garbage", typeof(SpriteRenderer));
-        garbageGameObject.GetComponent<SpriteRenderer>().sprite = GameAssets.instance.garbageSprite;
+        garbageGameObject.GetComponent<SpriteRenderer>().sprite = GameAssets.instance.garbageSpriteArray[Random.Range(0,Constants.totalGarbageElements)];
         garbageGameObject.transform.position = new Vector3(garbageGridPosition.x, garbageGridPosition.y);
         
     }
+
+
+
+
+
+ 
 }
