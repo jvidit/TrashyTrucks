@@ -8,6 +8,10 @@ public class Truck : MonoBehaviour
     private Vector2 gridPosition;
     private float gridMoveTimer;
     private float gridMoveTimerMax;
+    private LevelGrid levelGrid;
+
+
+    private float fuel;
 
 
     private void Awake()
@@ -31,7 +35,10 @@ public class Truck : MonoBehaviour
 
 
 
-
+    public void Setup(LevelGrid levelGrid)
+    {
+        this.levelGrid = levelGrid;
+    }
 
     private float GetAngleFromVector(Vector2 dir)
     {
@@ -47,11 +54,16 @@ public class Truck : MonoBehaviour
 
         if (gridMoveTimer >= gridMoveTimerMax)
         {
-            gridPosition += gridMoveDirection*gridMoveTimerMax;
+            gridPosition += gridMoveDirection*gridMoveTimerMax*Constants.truckSpeed;
             gridMoveTimer -= gridMoveTimerMax;
         }
         transform.position = new Vector3(gridPosition.x, gridPosition.y);
         transform.eulerAngles = new Vector3(0, 0, GetAngleFromVector(gridMoveDirection));
+
+        gridPosition = ValidateGridPosition(gridPosition);
+
+
+        levelGrid.TruckMoved(gridPosition);
 
     }
 
@@ -83,6 +95,31 @@ public class Truck : MonoBehaviour
         }
 
 
+    }
+
+    public Vector2 ValidateGridPosition(Vector2 gridPosition)
+    {
+        if (gridPosition.x < -(levelGrid.width-1))
+        {
+            gridPosition.x = levelGrid.width - 1;
+        }
+
+        if (gridPosition.y < -(levelGrid.height-1))
+        {
+            gridPosition.y = levelGrid.height - 1;
+        }
+
+        if (gridPosition.x >= levelGrid.width)
+        {
+            gridPosition.x = -(levelGrid.width - 1);
+        }
+
+        if (gridPosition.y >= levelGrid.height)
+        {
+            gridPosition.y = -(levelGrid.height - 1);
+        }
+
+        return gridPosition;
     }
 
 }
