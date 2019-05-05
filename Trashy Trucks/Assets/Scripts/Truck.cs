@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Truck : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class Truck : MonoBehaviour
     public int correctGarbages;
     public int incorrectGarbages;
     public float currentFuel;
+    public int points;
+    public TextMeshProUGUI pointsText;
 
 
     private void Awake()
@@ -22,6 +26,7 @@ public class Truck : MonoBehaviour
         gridMoveDirection = new Vector2(0, 1);
         correctGarbages = 0;
         incorrectGarbages = 0;
+        points = 0;
     }
 
     // Update is called once per frame
@@ -31,6 +36,7 @@ public class Truck : MonoBehaviour
         HandleInput();
         HandleGridMovement();
         LookForTrash();
+        pointsText.SetText(points.ToString()); 
     }
 
 
@@ -72,10 +78,15 @@ public class Truck : MonoBehaviour
             incorrectGarbages += 1;
         else if (action.Equals("empty"))
         {
-              currentFuel += correctGarbages*Constants.correctFuelUp + incorrectGarbages * Constants.incorrectFuelUp;
-              correctGarbages = 0;
-              incorrectGarbages = 0;
+            currentFuel += correctGarbages * Constants.correctFuelUp + incorrectGarbages * Constants.incorrectFuelUp;
+            points += correctGarbages * Constants.correctPointsUp + incorrectGarbages * Constants.incorrectPointsUp ;
+
+
+            correctGarbages = 0;
+            incorrectGarbages = 0;
         }
+
+
         if(!(action.Equals("noChange")))Debug.Log(action);
     }
 

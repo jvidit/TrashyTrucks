@@ -65,9 +65,9 @@ public class LevelGrid
                 action = "increaseCorrectGarbage"; //Add Clasification
                 break;
             }
-            if ((truckGridPosition - dustbin1GridPosition).magnitude < Constants.pickupDistance)
+            if ((truckGridPosition - dustbin1GridPosition).magnitude < Constants.dropDistance)
             { action = "empty"; }
-            if ((truckGridPosition - dustbin2GridPosition).magnitude < Constants.pickupDistance)
+            if ((truckGridPosition - dustbin2GridPosition).magnitude < Constants.dropDistance)
             { action = "empty"; }
         }
 
