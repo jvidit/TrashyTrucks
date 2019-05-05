@@ -1,13 +1,13 @@
 ﻿<Properties StartupConfiguration="{CE0282AA-82E1-F698-30BC-1CF702F960B1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LoadingHandler.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GarbageElement.cs">
     <Files>
-      <File FileName="Assets/Scripts/Truck.cs" Line="30" Column="6" />
-      <File FileName="Assets/Scripts/Constants.cs" Line="14" Column="47" />
+      <File FileName="Assets/Scripts/Truck.cs" Line="19" Column="5" />
+      <File FileName="Assets/Scripts/Constants.cs" Line="14" Column="45" />
       <File FileName="Assets/Scripts/GameHandler.cs" Line="4" Column="1" />
-      <File FileName="Assets/Scripts/GameAssets.cs" Line="3" Column="19" />
+      <File FileName="Assets/Scripts/GameAssets.cs" Line="12" Column="31" />
       <File FileName="Assets/Scripts/TimerWindow.cs" Line="17" Column="39" />
-      <File FileName="Assets/Scripts/Loader.cs" Line="20" Column="10" />
-      <File FileName="Assets/Scripts/LoadingHandler.cs" Line="14" Column="9" />
+      <File FileName="Assets/Scripts/LevelGrid.cs" Line="40" Column="50" />
+      <File FileName="Assets/Scripts/GarbageElement.cs" Line="9" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

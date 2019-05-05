@@ -6,6 +6,7 @@ public class LevelGrid
 {
     private Vector2Int garbageGridPosition;
     private GameObject garbageGameObject;
+    private GameObject miniGarbageGameObject;
     private GameObject dustbin1;
     private GameObject dustbin2;
     private List<GarbageElement> garbageObjectArray = new List<GarbageElement>();
@@ -33,12 +34,21 @@ public class LevelGrid
     {
         garbageGridPosition = new Vector2Int(Random.Range(-width+Constants.boundary, width-Constants.boundary), Random.Range(-height+Constants.boundary,height-Constants.boundary));
         garbageGameObject = new GameObject("Garbage", typeof(SpriteRenderer));
+        miniGarbageGameObject = new GameObject("MiniGarbage", typeof(SpriteRenderer));
+
         int index = Random.Range(0, Constants.totalGarbageElements);
         garbageGameObject.GetComponent<SpriteRenderer>().sprite = GameAssets.instance.garbageSpriteArray[index];
         garbageGameObject.transform.position = new Vector3(garbageGridPosition.x, garbageGridPosition.y);
 
+        miniGarbageGameObject.GetComponent<SpriteRenderer>().sprite = GameAssets.instance.miniGarbage;
+        miniGarbageGameObject.transform.position = new Vector3(garbageGridPosition.x, garbageGridPosition.y);
+
+
+
         GarbageElement ge = new GarbageElement();
         ge.garbageElement = garbageGameObject;
+        ge.miniGarbage = miniGarbageGameObject;
+        ge.miniGarbage.layer = LayerMask.NameToLayer("minimap");
         if (index < Constants.totalGarbageElements / 2)
             ge.isBiodegradable = 1;
         else
@@ -62,6 +72,7 @@ public class LevelGrid
             {
                 garbageObjectArray.Remove(garbageIterator);
                 Object.Destroy(garbageIterator.garbageElement);
+                Object.Destroy(garbageIterator.miniGarbage);
                 action = "increaseCorrectGarbage"; //Add Clasification
                 break;
             }

@@ -6,5 +6,6 @@ public class GarbageElement
 {
     public GameObject garbageElement;
     public int isBiodegradable;
+    public GameObject miniGarbage;
 
 }
