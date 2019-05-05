@@ -9,6 +9,7 @@ public class GameAssets : MonoBehaviour
     {
         instance = this;
     }
+    public Sprite miniGarbage;
     public Sprite truckSprite;
     public Sprite[] garbageSpriteArray = new Sprite[Constants.totalGarbageElements];
 
