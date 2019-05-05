@@ -25,6 +25,8 @@ public class GameHandler : MonoBehaviour
 
         truck.Setup(levelGrid);
         levelGrid.Setup(dustbin1,dustbin2,truck);
+
+        truck.PopUpUI.SetActive(false);
     }
 
     private void Update()
@@ -39,7 +41,7 @@ public class GameHandler : MonoBehaviour
 
 
 
-        
+
     }
 
 

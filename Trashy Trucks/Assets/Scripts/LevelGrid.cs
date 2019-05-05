@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelGrid
+public class LevelGrid 
 {
     private Vector2Int garbageGridPosition;
     private GameObject garbageGameObject;
@@ -14,6 +14,8 @@ public class LevelGrid
     public int height;
     private Truck truck;
 
+    public static bool popUp = false;
+
 
     public void Setup(GameObject dustbin1,GameObject dustbin2,Truck truck)
     {
@@ -22,6 +24,9 @@ public class LevelGrid
         this.dustbin2 = dustbin2;
 
     }
+
+
+   
 
     public LevelGrid(int width, int height)
     {
@@ -71,9 +76,13 @@ public class LevelGrid
             if ((truckGridPosition - garbageElementGridPosition).magnitude < Constants.pickupDistance)
             {
                 garbageObjectArray.Remove(garbageIterator);
+                action = Classify(garbageIterator.isBiodegradable); //Add Clasification
+
+
+
                 Object.Destroy(garbageIterator.garbageElement);
                 Object.Destroy(garbageIterator.miniGarbage);
-                action = "increaseCorrectGarbage"; //Add Clasification
+
                 break;
             }
             if ((truckGridPosition - dustbin1GridPosition).magnitude < Constants.dropDistance)
@@ -94,6 +103,33 @@ public class LevelGrid
         vector2.x = (int)v.x;
         vector2.y = (int)v.y;
         return vector2;
+    }
+
+
+
+    private string Classify(int isBiodegradable)
+    {
+        PopUp();
+        return "increaseCorrectGarbage";
+
+    }
+
+
+    private void UnPopUp()
+    {
+
+        truck.PopUpUI.SetActive(false);
+        Time.timeScale = 1f;
+
+    }
+
+
+
+    private void PopUp()
+    {
+
+        truck.PopUpUI.SetActive(true);
+        Time.timeScale = 0.5f;
     }
 
 }

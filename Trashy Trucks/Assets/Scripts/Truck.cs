@@ -13,9 +13,12 @@ public class Truck : MonoBehaviour
     private LevelGrid levelGrid;
     public int correctGarbages;
     public int incorrectGarbages;
+    public GameObject PopUpUI;
     public float currentFuel;
     public int points;
     public TextMeshProUGUI pointsText;
+
+   
 
 
     private void Awake()
@@ -40,6 +43,8 @@ public class Truck : MonoBehaviour
 
         if (currentFuel<=0)
             Loader.Load(Loader.Scene.LoadingScene);
+
+
     }
 
 
@@ -146,6 +151,10 @@ public class Truck : MonoBehaviour
 
         return gridPosition;
     }
+
+
+
+
 
 }
 
