@@ -14,7 +14,7 @@ public class LevelGrid
     public int height;
     private Truck truck;
 
-    public static bool popUp = false;
+   
 
 
     public void Setup(GameObject dustbin1,GameObject dustbin2,Truck truck)
@@ -76,8 +76,9 @@ public class LevelGrid
             if ((truckGridPosition - garbageElementGridPosition).magnitude < Constants.pickupDistance)
             {
                 garbageObjectArray.Remove(garbageIterator);
-                action = Classify(garbageIterator.isBiodegradable); //Add Clasification
-
+                if (!truck.isPopUpSet)
+                    action = truck.Classify(garbageIterator.isBiodegradable); //Add Clasification
+                else action = "empty";
 
 
                 Object.Destroy(garbageIterator.garbageElement);
@@ -107,29 +108,6 @@ public class LevelGrid
 
 
 
-    private string Classify(int isBiodegradable)
-    {
-        PopUp();
-        return "increaseCorrectGarbage";
-
-    }
-
-
-    private void UnPopUp()
-    {
-
-        truck.PopUpUI.SetActive(false);
-        Time.timeScale = 1f;
-
-    }
-
-
-
-    private void PopUp()
-    {
-
-        truck.PopUpUI.SetActive(true);
-        Time.timeScale = 0.5f;
-    }
+    
 
 }

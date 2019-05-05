@@ -17,8 +17,8 @@ public class Truck : MonoBehaviour
     public float currentFuel;
     public int points;
     public TextMeshProUGUI pointsText;
-
-   
+    private int isBiodegradable;
+    public bool isPopUpSet = false;
 
 
     private void Awake()
@@ -152,7 +152,49 @@ public class Truck : MonoBehaviour
         return gridPosition;
     }
 
+    public string Classify(int isBiodegradable)
+    {
+        this.isBiodegradable = isBiodegradable;
+        PopUp();
+        return "empty";
 
+    }
+
+
+    private void UnPopUp()
+    {
+        isPopUpSet = false;
+        PopUpUI.SetActive(false);
+        Time.timeScale = 1f;
+
+    }
+
+
+
+    private void PopUp()
+    {
+        isPopUpSet = true;
+        PopUpUI.SetActive(true);
+        Time.timeScale = 0.5f;
+    }
+
+    public void green()
+    {
+        if (isBiodegradable == 1)
+            correctGarbages++;
+        else
+            incorrectGarbages++;
+        UnPopUp();
+    }
+
+    public void blue()
+    {
+        if (isBiodegradable == 0)
+            correctGarbages++;
+        else
+            incorrectGarbages++;
+        UnPopUp();
+    }
 
 
 
