@@ -6,7 +6,7 @@ public class LevelGrid
 {
     private Vector2Int garbageGridPosition;
     private GameObject garbageGameObject;
-    private List<GameObject> garbageObjectArray = new List<GameObject>();
+    private List<GarbageElement> garbageObjectArray = new List<GarbageElement>();
     public int width;
     public int height;
     private Truck truck;
@@ -24,27 +24,40 @@ public class LevelGrid
     {
         garbageGridPosition = new Vector2Int(Random.Range(-width+Constants.boundary, width-Constants.boundary), Random.Range(-height+Constants.boundary,height-Constants.boundary));
         garbageGameObject = new GameObject("Garbage", typeof(SpriteRenderer));
-        garbageGameObject.GetComponent<SpriteRenderer>().sprite = GameAssets.instance.garbageSpriteArray[Random.Range(0,Constants.totalGarbageElements)];
+        int index = Random.Range(0, Constants.totalGarbageElements);
+        garbageGameObject.GetComponent<SpriteRenderer>().sprite = GameAssets.instance.garbageSpriteArray[index];
         garbageGameObject.transform.position = new Vector3(garbageGridPosition.x, garbageGridPosition.y);
 
+        GarbageElement ge = new GarbageElement();
+        ge.garbageElement = garbageGameObject;
+        if (index < Constants.totalGarbageElements / 2)
+            ge.isBiodegradable = 1;
+        else
+            ge.isBiodegradable = 0; 
 
 
-        garbageObjectArray.Add(garbageGameObject);
+        garbageObjectArray.Add(ge);
     }
 
 
     public void TruckMoved(Vector2 truckGridPosition)
     {
-        foreach (GameObject garbageElement in garbageObjectArray)
+
+        //Checking if garbage can be picked by the truck
+        foreach (GarbageElement garbageIterator in garbageObjectArray)
         {
-            Vector2Int garbageElementGridPosition = v3tov2int(garbageElement.transform.position);
+            Vector2Int garbageElementGridPosition = v3tov2int(garbageIterator.garbageElement.transform.position);
             if ((truckGridPosition - garbageElementGridPosition).magnitude < Constants.pickupDistance)
             {
-                garbageObjectArray.Remove(garbageElement);
-                Object.Destroy(garbageElement);
+                garbageObjectArray.Remove(garbageIterator);
+                Object.Destroy(garbageIterator.garbageElement);
                 break;
             }
         }
+
+
+
+
     }
 
     public void Setup(Truck truck)

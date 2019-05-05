@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Constants.cs" />
     <Compile Include="Assets\Scripts\GameAssets.cs" />
     <Compile Include="Assets\Scripts\GameHandler.cs" />
+    <Compile Include="Assets\Scripts\GarbageElement.cs" />
     <Compile Include="Assets\Scripts\LevelGrid.cs" />
     <Compile Include="Assets\Scripts\Truck.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">

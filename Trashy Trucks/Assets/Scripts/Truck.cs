@@ -11,7 +11,8 @@ public class Truck : MonoBehaviour
     private LevelGrid levelGrid;
 
 
-    private float fuel;
+
+
 
 
     private void Awake()
