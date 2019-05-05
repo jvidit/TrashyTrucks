@@ -9,10 +9,9 @@ public class Truck : MonoBehaviour
     private float gridMoveTimer;
     private float gridMoveTimerMax;
     private LevelGrid levelGrid;
-
-
-
-
+    public int correctGarbages;
+    public int incorrectGarbages;
+    public float currentFuel;
 
 
     private void Awake()
@@ -21,10 +20,9 @@ public class Truck : MonoBehaviour
         gridMoveTimerMax = 0.01f;
         gridMoveTimer = gridMoveTimerMax;
         gridMoveDirection = new Vector2(0, 1);
-
+        correctGarbages = 0;
+        incorrectGarbages = 0;
     }
-
-
 
     // Update is called once per frame
     private void Update()
@@ -32,8 +30,8 @@ public class Truck : MonoBehaviour
 
         HandleInput();
         HandleGridMovement();
+        LookForTrash();
     }
-
 
 
     public void Setup(LevelGrid levelGrid)
@@ -63,11 +61,23 @@ public class Truck : MonoBehaviour
 
         gridPosition = ValidateGridPosition(gridPosition);
 
-
-        levelGrid.TruckMoved(gridPosition);
-
     }
 
+    private void LookForTrash()
+    {
+        string action = (levelGrid.TruckMoved(gridPosition));
+        if (action.Equals("increaseCorrectGarbage"))
+            correctGarbages += 1;
+        else if (action.Equals("increaseIncorrectGarbage"))
+            incorrectGarbages += 1;
+        else if (action.Equals("empty"))
+        {
+              currentFuel += correctGarbages*Constants.correctFuelUp + incorrectGarbages * Constants.incorrectFuelUp;
+              correctGarbages = 0;
+              incorrectGarbages = 0;
+        }
+        if(!(action.Equals("noChange")))Debug.Log(action);
+    }
 
     private void HandleInput()
     {

@@ -9,7 +9,8 @@ public class GameHandler : MonoBehaviour
 
 
     private LevelGrid levelGrid;
-
+    public GameObject dustbin1;
+    public GameObject dustbin2;
 
     private float garbageTimer;
     private float garbageTimerMax;
@@ -23,7 +24,7 @@ public class GameHandler : MonoBehaviour
         garbageTimer = garbageTimerMax;
 
         truck.Setup(levelGrid);
-        levelGrid.Setup(truck);
+        levelGrid.Setup(dustbin1,dustbin2,truck);
     }
 
     private void Update()

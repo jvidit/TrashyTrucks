@@ -6,12 +6,21 @@ public class LevelGrid
 {
     private Vector2Int garbageGridPosition;
     private GameObject garbageGameObject;
+    private GameObject dustbin1;
+    private GameObject dustbin2;
     private List<GarbageElement> garbageObjectArray = new List<GarbageElement>();
     public int width;
     public int height;
     private Truck truck;
 
 
+    public void Setup(GameObject dustbin1,GameObject dustbin2,Truck truck)
+    {
+        this.truck = truck;
+        this.dustbin1 = dustbin1;
+        this.dustbin2 = dustbin2;
+
+    }
 
     public LevelGrid(int width, int height)
     {
@@ -40,37 +49,33 @@ public class LevelGrid
     }
 
 
-    public void TruckMoved(Vector2 truckGridPosition)
+    public string TruckMoved(Vector2 truckGridPosition)
     {
-
+        string action = "noChange";
         //Checking if garbage can be picked by the truck
         foreach (GarbageElement garbageIterator in garbageObjectArray)
         {
             Vector2Int garbageElementGridPosition = v3tov2int(garbageIterator.garbageElement.transform.position);
+            Vector2Int dustbin1GridPosition = v3tov2int(dustbin1.transform.position);
+            Vector2Int dustbin2GridPosition = v3tov2int(dustbin2.transform.position);
             if ((truckGridPosition - garbageElementGridPosition).magnitude < Constants.pickupDistance)
             {
                 garbageObjectArray.Remove(garbageIterator);
                 Object.Destroy(garbageIterator.garbageElement);
+                action = "increaseCorrectGarbage"; //Add Clasification
                 break;
             }
+            if ((truckGridPosition - dustbin1GridPosition).magnitude < Constants.pickupDistance)
+            { action = "empty"; }
+            if ((truckGridPosition - dustbin2GridPosition).magnitude < Constants.pickupDistance)
+            { action = "empty"; }
         }
 
+        return action;  
 
 
 
     }
-
-    public void Setup(Truck truck)
-    {
-        this.truck = truck;
-    }
-
-
-
-
-  
-
-
 
     private Vector2Int v3tov2int (Vector3 v)
     {
