@@ -22,5 +22,10 @@ public class TimerWindow : MonoBehaviour
         string seconds = (t % 60).ToString("f2");
 
         timerText.SetText(minutes + ":" + seconds);
+
+
+
+        if (minutes.Equals("5"))
+            Loader.Load(Loader.Scene.LoadingScene);
     }
 }

@@ -36,6 +36,9 @@ public class GameHandler : MonoBehaviour
             garbageTimer -= garbageTimerMax;
             levelGrid.SpawnGarbage();
         }
+
+
+
         
     }
 

@@ -36,7 +36,10 @@ public class Truck : MonoBehaviour
         HandleInput();
         HandleGridMovement();
         LookForTrash();
-        pointsText.SetText(points.ToString()); 
+        pointsText.SetText(points.ToString());
+
+        if (currentFuel<=0)
+            Loader.Load(Loader.Scene.LoadingScene);
     }
 
 
