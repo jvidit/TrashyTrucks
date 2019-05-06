@@ -9,6 +9,7 @@ public class Constants : MonoBehaviour
     public static int pickupDistance = 1;
     public static int dropDistance = 2;
     public static int truckSpeed = 5;
+    public static int angularVelocity = 10;
     public static int boundary = 2;
     public static float consumptionRate = 0.1f;
     public static int innateConsumption = 10;

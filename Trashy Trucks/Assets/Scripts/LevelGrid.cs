@@ -78,7 +78,7 @@ public class LevelGrid
                 garbageObjectArray.Remove(garbageIterator);
                 if (!truck.isPopUpSet)
                     action = truck.Classify(garbageIterator.isBiodegradable); //Add Clasification
-                else action = "empty";
+                else action = "noChange";
 
 
                 Object.Destroy(garbageIterator.garbageElement);
