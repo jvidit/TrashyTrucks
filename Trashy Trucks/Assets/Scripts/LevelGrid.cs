@@ -68,11 +68,22 @@ public class LevelGrid
     {
         string action = "noChange";
         //Checking if garbage can be picked by the truck
+
+        foreach (GarbageElement garbageIterator in garbageObjectArray)
+        {
+            garbageIterator.garbageElement.transform.eulerAngles = truck.transform.eulerAngles;
+        }
+
+        dustbin1.transform.eulerAngles= truck.transform.eulerAngles;
+        dustbin2.transform.eulerAngles= truck.transform.eulerAngles;
+
+
         foreach (GarbageElement garbageIterator in garbageObjectArray)
         {
             Vector2Int garbageElementGridPosition = v3tov2int(garbageIterator.garbageElement.transform.position);
             Vector2Int dustbin1GridPosition = v3tov2int(dustbin1.transform.position);
             Vector2Int dustbin2GridPosition = v3tov2int(dustbin2.transform.position);
+
             if ((truckGridPosition - garbageElementGridPosition).magnitude < Constants.pickupDistance)
             {
                 garbageObjectArray.Remove(garbageIterator);

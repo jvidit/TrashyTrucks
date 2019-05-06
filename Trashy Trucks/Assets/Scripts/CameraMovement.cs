@@ -11,5 +11,6 @@ public class CameraMovement : MonoBehaviour
     void Update()
     { 
         transform.position = new Vector3(truck.position.x, truck.position.y,-20);
+        transform.eulerAngles = truck.transform.eulerAngles;
     }
 }

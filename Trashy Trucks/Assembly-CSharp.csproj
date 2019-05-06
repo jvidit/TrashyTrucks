@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\LevelGrid.cs" />
     <Compile Include="Assets\Scripts\Loader.cs" />
     <Compile Include="Assets\Scripts\LoadingHandler.cs" />
+    <Compile Include="Assets\Scripts\MinimapCam.cs" />
     <Compile Include="Assets\Scripts\TimerWindow.cs" />
     <Compile Include="Assets\Scripts\Truck.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />

@@ -19,6 +19,7 @@ public class Truck : MonoBehaviour
     public TextMeshProUGUI pointsText;
     private int isBiodegradable;
     public bool isPopUpSet = false;
+    private float truckAng = 0;
 
 
     private void Awake()
@@ -30,6 +31,7 @@ public class Truck : MonoBehaviour
         correctGarbages = 0;
         incorrectGarbages = 0;
         points = 0;
+        truckAng = 0;
     }
 
     // Update is called once per frame
@@ -44,6 +46,8 @@ public class Truck : MonoBehaviour
         if (currentFuel<=0)
             Loader.Load(Loader.Scene.LoadingScene);
 
+        transform.eulerAngles = new Vector3(0, 0, truckAng - 90);
+        
 
     }
 
@@ -67,13 +71,17 @@ public class Truck : MonoBehaviour
 
         if (gridMoveTimer >= gridMoveTimerMax)
         {
-            gridPosition += gridMoveDirection*gridMoveTimerMax*Constants.truckSpeed;
+
+            gridPosition += (new Vector2(Mathf.Cos(truckAng*Mathf.Deg2Rad),Mathf.Sin(truckAng*Mathf.Deg2Rad)))*gridMoveTimerMax*Constants.truckSpeed;
             gridMoveTimer -= gridMoveTimerMax;
+            gridPosition += new Vector2(0, 0);
         }
         transform.position = new Vector3(gridPosition.x, gridPosition.y);
-        transform.eulerAngles = new Vector3(0, 0, GetAngleFromVector(gridMoveDirection));
+        //transform.eulerAngles = new Vector3(0, 0, GetAngleFromVector(gridMoveDirection));
 
         gridPosition = ValidateGridPosition(gridPosition);
+
+        Debug.Log(Mathf.Sin(1.51f));
 
     }
 
@@ -100,28 +108,15 @@ public class Truck : MonoBehaviour
 
     private void HandleInput()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
-            gridMoveDirection.x = 0;
-            gridMoveDirection.y = 1;
+            truckAng += Constants.angularVelocity;
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
-            gridMoveDirection.x = 0;
-            gridMoveDirection.y = -1;
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            gridMoveDirection.x = -1;
-            gridMoveDirection.y = 0;
-        }
-
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            gridMoveDirection.x = 1;
-            gridMoveDirection.y = 0;
+            truckAng -= Constants.angularVelocity;
         }
 
 
