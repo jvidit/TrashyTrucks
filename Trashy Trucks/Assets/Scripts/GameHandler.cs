@@ -39,7 +39,7 @@ public class GameHandler : MonoBehaviour
             levelGrid.SpawnGarbage();
         }
 
-
+        levelGrid.HandleDisposalPopUp();
 
 
     }

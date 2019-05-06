@@ -1,15 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LevelGrid 
 {
     private Vector2Int garbageGridPosition;
     private GameObject garbageGameObject;
     private GameObject miniGarbageGameObject;
+    private GameObject disposalPopUp;
+
+
     private GameObject dustbin1;
     private GameObject dustbin2;
+
+
     private List<GarbageElement> garbageObjectArray = new List<GarbageElement>();
+    private List<GameObject> disposalPopArray = new List<GameObject>();
     public int width;
     public int height;
     private Truck truck;
@@ -33,6 +40,8 @@ public class LevelGrid
         this.width = width;
         this.height = height;
         SpawnGarbage();
+
+
     }
 
     public void SpawnGarbage()
@@ -62,6 +71,22 @@ public class LevelGrid
         ge.garbageName = GameAssets.instance.garbageName[index];
         garbageObjectArray.Add(ge);
     }
+
+
+
+    public void SpawnDisposal(Vector2 popUpPosition)
+    {
+        if (truck.incorrectGarbages + truck.correctGarbages == 0)
+            return;
+
+        disposalPopUp = new GameObject("DisposalPopUp", typeof(SpriteRenderer));
+        disposalPopUp.GetComponent<SpriteRenderer>().sprite = GameAssets.instance.diposalText;
+        disposalPopUp.transform.position = new Vector3(popUpPosition.x, popUpPosition.y, 0);
+        disposalPopUp.layer = LayerMask.NameToLayer("popup");
+        disposalPopArray.Add(disposalPopUp);
+
+    }
+
 
 
     public string TruckMoved(Vector2 truckGridPosition)
@@ -98,9 +123,15 @@ public class LevelGrid
                 break;
             }
             if ((truckGridPosition - dustbin1GridPosition).magnitude < Constants.dropDistance)
-            { action = "empty"; }
+            { 
+                action = "empty";
+                SpawnDisposal(dustbin1GridPosition);
+            }
             if ((truckGridPosition - dustbin2GridPosition).magnitude < Constants.dropDistance)
-            { action = "empty"; }
+            {
+                action = "empty";
+                SpawnDisposal(dustbin2GridPosition);
+            }
         }
 
         return action;  
@@ -108,6 +139,24 @@ public class LevelGrid
 
 
     }
+
+
+    public void HandleDisposalPopUp()
+    {
+        foreach (GameObject disposalIterator in disposalPopArray)
+        {
+            disposalIterator.transform.eulerAngles = truck.transform.eulerAngles;
+            disposalIterator.transform.position = new Vector3(disposalIterator.transform.position.x, disposalIterator.transform.position.y + Constants.popUpSpeed);
+            if (disposalIterator.transform.position.y > 40)
+            {
+                disposalPopArray.Remove(disposalIterator);
+                Object.Destroy(disposalIterator);
+                break;
+            }
+        }
+    }
+
+
 
     private Vector2Int v3tov2int (Vector3 v)
     {

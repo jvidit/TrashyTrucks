@@ -17,5 +17,6 @@ public class Constants : MonoBehaviour
     public static int incorrectFuelUp = 5;
     public static int correctPointsUp = 10;
     public static int incorrectPointsUp = 0;
+    public static float popUpSpeed = 0.05f;
 
 }

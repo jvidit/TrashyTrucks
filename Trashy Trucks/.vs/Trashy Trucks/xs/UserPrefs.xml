@@ -1,15 +1,15 @@
 ﻿<Properties StartupConfiguration="{CE0282AA-82E1-F698-30BC-1CF702F960B1}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CameraMovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Constants.cs">
     <Files>
-      <File FileName="Assets/Scripts/Truck.cs" Line="49" Column="64" />
-      <File FileName="Assets/Scripts/Constants.cs" Line="15" Column="46" />
-      <File FileName="Assets/Scripts/GameHandler.cs" Line="12" Column="32" />
-      <File FileName="Assets/Scripts/GameAssets.cs" Line="12" Column="31" />
-      <File FileName="Assets/Scripts/TimerWindow.cs" Line="14" Column="31" />
-      <File FileName="Assets/Scripts/LevelGrid.cs" Line="28" Column="5" />
-      <File FileName="Assets/Scripts/GarbageElement.cs" Line="9" Column="35" />
+      <File FileName="Assets/Scripts/Truck.cs" Line="45" Column="24" />
+      <File FileName="Assets/Scripts/LevelGrid.cs" Line="148" Column="157" />
+      <File FileName="Assets/Scripts/GameAssets.cs" Line="20" Column="2" />
+      <File FileName="Assets/Scripts/GarbageElement.cs" Line="14" Column="5" />
       <File FileName="Assets/Scripts/ClassifyPopUp.cs" Line="8" Column="5" />
-      <File FileName="Assets/Scripts/CameraMovement.cs" Line="15" Column="6" />
+      <File FileName="Assets/Scripts/Testing.cs" Line="11" Column="9" />
+      <File FileName="Assets/Scripts/DisposalPopUp.cs" Line="13" Column="10" />
+      <File FileName="Assets/Scripts/GameHandler.cs" Line="42" Column="41" />
+      <File FileName="Assets/Scripts/Constants.cs" Line="20" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
