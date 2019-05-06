@@ -100,25 +100,25 @@ public class Truck : MonoBehaviour
 
     private void HandleInput()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
             gridMoveDirection.x = 0;
             gridMoveDirection.y = 1;
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             gridMoveDirection.x = 0;
             gridMoveDirection.y = -1;
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             gridMoveDirection.x = -1;
             gridMoveDirection.y = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             gridMoveDirection.x = 1;
             gridMoveDirection.y = 0;
@@ -157,6 +157,7 @@ public class Truck : MonoBehaviour
         this.isBiodegradable = isBiodegradable;
         PopUp();
         return "noChange";
+
     }
 
 
