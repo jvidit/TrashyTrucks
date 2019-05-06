@@ -29,6 +29,6 @@ public class TimerWindow : MonoBehaviour
 
 
         if (minutes.Equals("5"))
-            Loader.Load(Loader.Scene.LoadingScene);
+            Loader.Load(Loader.Scene.EndScene);
     }
 }

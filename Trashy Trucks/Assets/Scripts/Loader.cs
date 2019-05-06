@@ -7,15 +7,10 @@ public class Loader
 {
 
 
-    public enum Scene { MainGame, LoadingScene };
+    public enum Scene { MainGame, LoadingScene, EndScene };
 
     public static void Load(Scene scene)
     {
-        Debug.Log("Being called");
-
-
-
-        Debug.Log("Being called2");
         SceneManager.LoadScene(scene.ToString());
     }
 

@@ -18,7 +18,7 @@ public class Truck : MonoBehaviour
     public float currentFuel;
     public float currentTimerPower;
     public float currentClassifyPower;
-    public int points;
+    public static int points;
     public TextMeshProUGUI pointsText;
     private int isBiodegradable;
     public bool isPopUpSet = false;
@@ -49,7 +49,7 @@ public class Truck : MonoBehaviour
         pointsText.SetText(points.ToString());
 
         if (currentFuel<=0)
-            Loader.Load(Loader.Scene.LoadingScene);
+            Loader.Load(Loader.Scene.EndScene);
 
         transform.eulerAngles = new Vector3(0, 0, truckAng - 90);
 

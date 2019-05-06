@@ -506,7 +506,7 @@ GameObject:
   - component: {fileID: 1832564911}
   - component: {fileID: 1832564910}
   m_Layer: 0
-  m_Name: TextMeshPro Text
+  m_Name: points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
