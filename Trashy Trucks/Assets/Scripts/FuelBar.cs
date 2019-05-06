@@ -23,7 +23,7 @@ public class FuelBar : MonoBehaviour
     void Update()
     {
 
-        truck.currentFuel = truck.currentFuel - (truck.correctGarbages + truck.incorrectGarbages + Constants.innateConsumption) * Time.deltaTime * (Constants.consumptionRate);
+        truck.currentFuel = Mathf.Max(truck.currentFuel - (truck.correctGarbages + truck.incorrectGarbages + Constants.innateConsumption) * Time.deltaTime * (Constants.consumptionRate),0);
         fuelBar.value = CalculateFuel();
 
     }

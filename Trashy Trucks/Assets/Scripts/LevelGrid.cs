@@ -125,14 +125,41 @@ public class LevelGrid
 
 
 
-    public string TruckMoved(Vector2 truckGridPosition)
+    public string detectPowerUp(Vector2 truckGridPosition)
+    {
+        string action = "noChange";
+        //Checking if garbage can be picked by the truck
+
+        foreach (PowerUpElement powerUpIterator in powerUpArray)
+        {
+            Vector2Int powerElementGridPosition = v3tov2int(powerUpIterator.powerElement.transform.position);
+            
+
+            if ((truckGridPosition - powerElementGridPosition).magnitude < Constants.pickupDistance)
+            {
+                powerUpArray.Remove(powerUpIterator);
+                if (!truck.isPopUpSet)
+                    action = (powerUpIterator.index).ToString(); //Add Clasification
+                else action = "noChange";
+
+
+                Object.Destroy(powerUpIterator.powerElement);
+                Object.Destroy(powerUpIterator.miniPower);
+
+                break;
+            }
+        }
+
+        return action;
+    }
+
+    public string detectGarbage (Vector2 truckGridPosition)
     {
         string action = "noChange";
         //Checking if garbage can be picked by the truck
 
 
         matchAngles();
-
 
         foreach (GarbageElement garbageIterator in garbageObjectArray)
         {
@@ -144,7 +171,7 @@ public class LevelGrid
             {
                 garbageObjectArray.Remove(garbageIterator);
                 if (!truck.isPopUpSet)
-                    action = truck.Classify(garbageIterator.isBiodegradable,garbageIterator.garbageElement.GetComponent<SpriteRenderer>().sprite,garbageIterator.garbageName); //Add Clasification
+                    action = truck.Classify(garbageIterator.isBiodegradable, garbageIterator.garbageElement.GetComponent<SpriteRenderer>().sprite, garbageIterator.garbageName); //Add Clasification
                 else action = "noChange";
 
 
@@ -154,7 +181,7 @@ public class LevelGrid
                 break;
             }
             if ((truckGridPosition - dustbin1GridPosition).magnitude < Constants.dropDistance)
-            { 
+            {
                 action = "empty";
                 SpawnDisposal(dustbin1GridPosition);
             }
@@ -165,13 +192,8 @@ public class LevelGrid
             }
         }
 
-        return action;  
-
-
-
-    }
-
-
+        return action;
+     }
     //matches angles of all objects with that of truck
     private void matchAngles()
     {

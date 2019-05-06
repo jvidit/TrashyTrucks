@@ -16,6 +16,7 @@ public class Truck : MonoBehaviour
     public int incorrectGarbages;
     public GameObject PopUpUI;
     public float currentFuel;
+    public float currentTimerPower;
     public int points;
     public TextMeshProUGUI pointsText;
     private int isBiodegradable;
@@ -34,6 +35,7 @@ public class Truck : MonoBehaviour
         incorrectGarbages = 0;
         points = 0;
         truckAng = 0;
+        
     }
 
     // Update is called once per frame
@@ -49,6 +51,8 @@ public class Truck : MonoBehaviour
             Loader.Load(Loader.Scene.LoadingScene);
 
         transform.eulerAngles = new Vector3(0, 0, truckAng - 90);
+
+       
         
 
     }
@@ -88,7 +92,9 @@ public class Truck : MonoBehaviour
 
     private void LookForTrash()
     {
-        string action = (levelGrid.TruckMoved(gridPosition));
+        string action = (levelGrid.detectGarbage(gridPosition));
+        string action2 = (levelGrid.detectPowerUp(gridPosition));
+
         if (action.Equals("increaseCorrectGarbage"))
             correctGarbages += 1;
         else if (action.Equals("increaseIncorrectGarbage"))
@@ -103,8 +109,12 @@ public class Truck : MonoBehaviour
             incorrectGarbages = 0;
         }
 
+        if (action2.Equals("1"))
+            currentFuel = 100;
+        if (action2.Equals("2"))
+            currentTimerPower = 100;
 
-        if(!(action.Equals("noChange")))Debug.Log(action);
+        if(!(action2.Equals("noChange")))Debug.Log(action2);
     }
 
     private void HandleInput()
