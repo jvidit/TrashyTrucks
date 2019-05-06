@@ -61,9 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraMovement.cs" />
-    <Compile Include="Assets\Scripts\ClassifyPopUp.cs" />
     <Compile Include="Assets\Scripts\Constants.cs" />
-    <Compile Include="Assets\Scripts\DisposalPopUp.cs" />
     <Compile Include="Assets\Scripts\FuelBar.cs" />
     <Compile Include="Assets\Scripts\GameAssets.cs" />
     <Compile Include="Assets\Scripts\GameHandler.cs" />
@@ -72,7 +70,7 @@
     <Compile Include="Assets\Scripts\Loader.cs" />
     <Compile Include="Assets\Scripts\LoadingHandler.cs" />
     <Compile Include="Assets\Scripts\MinimapCam.cs" />
-    <Compile Include="Assets\Scripts\Testing.cs" />
+    <Compile Include="Assets\Scripts\PowerUpElement.cs" />
     <Compile Include="Assets\Scripts\TimerWindow.cs" />
     <Compile Include="Assets\Scripts\Truck.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />

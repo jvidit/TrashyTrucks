@@ -6,6 +6,7 @@ public class Constants : MonoBehaviour
 {
 
     public static int totalGarbageElements = 7;
+    public static int totalPowerUps = 3;
     public static int pickupDistance = 1;
     public static int dropDistance = 2;
     public static int truckSpeed = 5;

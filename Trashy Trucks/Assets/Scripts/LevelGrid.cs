@@ -8,6 +8,15 @@ public class LevelGrid
     private Vector2Int garbageGridPosition;
     private GameObject garbageGameObject;
     private GameObject miniGarbageGameObject;
+    private List<GarbageElement> garbageObjectArray = new List<GarbageElement>();
+    private List<GameObject> disposalPopArray = new List<GameObject>();
+
+    private Vector2Int powerGridPosition;
+    private GameObject powerGameObject;
+    private GameObject miniPowerGameObject;
+    private List<PowerUpElement> powerUpArray = new List<PowerUpElement>();
+
+
     private GameObject disposalPopUp;
 
 
@@ -15,11 +24,13 @@ public class LevelGrid
     private GameObject dustbin2;
 
 
-    private List<GarbageElement> garbageObjectArray = new List<GarbageElement>();
-    private List<GameObject> disposalPopArray = new List<GameObject>();
+
     public int width;
     public int height;
     private Truck truck;
+
+
+
 
    
 
@@ -73,6 +84,31 @@ public class LevelGrid
     }
 
 
+    public void SpawnPowerUp()
+    {
+        powerGridPosition = new Vector2Int(Random.Range(-width + Constants.boundary, width - Constants.boundary), Random.Range(-height + Constants.boundary, height - Constants.boundary));
+        powerGameObject = new GameObject("PowerUp", typeof(SpriteRenderer));
+        miniPowerGameObject = new GameObject("MiniPower", typeof(SpriteRenderer));
+
+        int index = Random.Range(0, Constants.totalPowerUps);
+        powerGameObject.GetComponent<SpriteRenderer>().sprite = GameAssets.instance.powerUpsArray[index];
+        powerGameObject.transform.position = new Vector3(powerGridPosition.x, powerGridPosition.y);
+
+        miniPowerGameObject.GetComponent<SpriteRenderer>().sprite = GameAssets.instance.miniPower;
+        miniPowerGameObject.transform.position = new Vector3(powerGridPosition.x, powerGridPosition.y);
+
+
+        PowerUpElement pe = new PowerUpElement();
+        pe.powerElement = powerGameObject;
+        pe.miniPower = miniPowerGameObject;
+        pe.miniPower.layer = LayerMask.NameToLayer("minimap");
+        pe.index = index;
+
+        powerUpArray.Add(pe);
+
+
+    }
+
 
     public void SpawnDisposal(Vector2 popUpPosition)
     {
@@ -94,13 +130,8 @@ public class LevelGrid
         string action = "noChange";
         //Checking if garbage can be picked by the truck
 
-        foreach (GarbageElement garbageIterator in garbageObjectArray)
-        {
-            garbageIterator.garbageElement.transform.eulerAngles = truck.transform.eulerAngles;
-        }
 
-        dustbin1.transform.eulerAngles= truck.transform.eulerAngles;
-        dustbin2.transform.eulerAngles= truck.transform.eulerAngles;
+        matchAngles();
 
 
         foreach (GarbageElement garbageIterator in garbageObjectArray)
@@ -140,6 +171,22 @@ public class LevelGrid
 
     }
 
+
+    //matches angles of all objects with that of truck
+    private void matchAngles()
+    {
+
+        foreach (GarbageElement garbageIterator in garbageObjectArray)
+            garbageIterator.garbageElement.transform.eulerAngles = truck.transform.eulerAngles;
+
+        foreach (PowerUpElement powerIterator in powerUpArray)
+            powerIterator.powerElement.transform.eulerAngles = truck.transform.eulerAngles;
+
+
+        dustbin1.transform.eulerAngles = truck.transform.eulerAngles;
+        dustbin2.transform.eulerAngles = truck.transform.eulerAngles;
+
+    }
 
     public void HandleDisposalPopUp()
     {

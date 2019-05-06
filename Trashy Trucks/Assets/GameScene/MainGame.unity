@@ -2778,6 +2778,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2724e2f08e291486c95dc51626d99e04, type: 3}
   - {fileID: 21300000, guid: ef728982cc61e4fce8d8cc7435111bb3, type: 3}
   - {fileID: 21300000, guid: f51cf4406c6f1433091be4f7d0d32bbb, type: 3}
+  powerUpsArray:
+  - {fileID: 21300000, guid: d7d6e97df36c34989b420f5152461af5, type: 3}
+  - {fileID: 21300000, guid: 9b7ba7d337c20489fb2761d0101687dc, type: 3}
+  - {fileID: 21300000, guid: 86ad6d6e4db9046248dcaf5536ebb06e, type: 3}
   garbageName:
   - Banana Peel
   - Crumbled Paper

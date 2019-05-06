@@ -14,6 +14,9 @@ public class GameHandler : MonoBehaviour
 
     private float garbageTimer;
     private float garbageTimerMax;
+
+    private float powerTimer;
+    private float powerTimerMax;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +25,10 @@ public class GameHandler : MonoBehaviour
         levelGrid = new LevelGrid(20, 20);
         garbageTimerMax = 5f;
         garbageTimer = garbageTimerMax;
+
+        powerTimerMax = 5f;
+        powerTimer = powerTimerMax;
+
 
         truck.Setup(levelGrid);
         levelGrid.Setup(dustbin1,dustbin2,truck);
@@ -33,13 +40,25 @@ public class GameHandler : MonoBehaviour
     {
         garbageTimer += Time.deltaTime;
 
+
         if (garbageTimer >= garbageTimerMax)
         {
             garbageTimer -= garbageTimerMax;
             levelGrid.SpawnGarbage();
         }
 
+        powerTimer += Time.deltaTime;
+
+
+        if (powerTimer >= powerTimerMax)
+        {
+            powerTimer -= powerTimerMax;
+            levelGrid.SpawnPowerUp();
+        }
+
+
         levelGrid.HandleDisposalPopUp();
+       
 
 
     }
