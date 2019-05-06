@@ -26,7 +26,7 @@ public class GameHandler : MonoBehaviour
         garbageTimerMax = 5f;
         garbageTimer = garbageTimerMax;
 
-        powerTimerMax = 5f;
+        powerTimerMax = 25f;
         powerTimer = powerTimerMax;
 
 

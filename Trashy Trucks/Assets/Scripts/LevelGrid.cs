@@ -170,8 +170,10 @@ public class LevelGrid
             if ((truckGridPosition - garbageElementGridPosition).magnitude < Constants.pickupDistance)
             {
                 garbageObjectArray.Remove(garbageIterator);
-                if (!truck.isPopUpSet)
+                if (!truck.isPopUpSet && truck.currentClassifyPower <= 0)
                     action = truck.Classify(garbageIterator.isBiodegradable, garbageIterator.garbageElement.GetComponent<SpriteRenderer>().sprite, garbageIterator.garbageName); //Add Clasification
+                else if (!truck.isPopUpSet && truck.currentClassifyPower > 0)
+                    action = "increaseCorrectGarbage";
                 else action = "noChange";
 
 

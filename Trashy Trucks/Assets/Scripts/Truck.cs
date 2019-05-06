@@ -17,6 +17,7 @@ public class Truck : MonoBehaviour
     public GameObject PopUpUI;
     public float currentFuel;
     public float currentTimerPower;
+    public float currentClassifyPower;
     public int points;
     public TextMeshProUGUI pointsText;
     private int isBiodegradable;
@@ -109,6 +110,8 @@ public class Truck : MonoBehaviour
             incorrectGarbages = 0;
         }
 
+        if (action2.Equals("0"))
+            currentClassifyPower = 100;
         if (action2.Equals("1"))
             currentFuel = 100;
         if (action2.Equals("2"))
