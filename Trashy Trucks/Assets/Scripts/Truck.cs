@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class Truck : MonoBehaviour
 {
     private Vector2 gridMoveDirection;
@@ -20,7 +21,8 @@ public class Truck : MonoBehaviour
     private int isBiodegradable;
     public bool isPopUpSet = false;
     private float truckAng = 0;
-
+    public Image garbageImage;
+    public TextMeshProUGUI garbageName;
 
     private void Awake()
     {
@@ -81,7 +83,6 @@ public class Truck : MonoBehaviour
 
         gridPosition = ValidateGridPosition(gridPosition);
 
-        Debug.Log(Mathf.Sin(1.51f));
 
     }
 
@@ -147,10 +148,11 @@ public class Truck : MonoBehaviour
         return gridPosition;
     }
 
-    public string Classify(int isBiodegradable)
+    public string Classify(int isBiodegradable, Sprite sprite,  string garbageNameString)
     {
         this.isBiodegradable = isBiodegradable;
-        PopUp();
+        garbageName.SetText(garbageNameString);
+        PopUp(sprite);
         return "noChange";
 
     }
@@ -166,9 +168,13 @@ public class Truck : MonoBehaviour
 
 
 
-    private void PopUp()
+    private void PopUp(Sprite sprite)
     {
         isPopUpSet = true;
+        float width = 100* sprite.bounds.size.x;  // this is gonna be our width
+        float height = 100 * sprite.bounds.size.y;  // this is gonna be our height
+        garbageImage.rectTransform.sizeDelta = new Vector2(width, height);
+        garbageImage.sprite= sprite;
         PopUpUI.SetActive(true);
         Time.timeScale = 0.5f;
     }

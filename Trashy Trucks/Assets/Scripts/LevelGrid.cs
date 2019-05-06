@@ -44,7 +44,7 @@ public class LevelGrid
         int index = Random.Range(0, Constants.totalGarbageElements);
         garbageGameObject.GetComponent<SpriteRenderer>().sprite = GameAssets.instance.garbageSpriteArray[index];
         garbageGameObject.transform.position = new Vector3(garbageGridPosition.x, garbageGridPosition.y);
-
+        
         miniGarbageGameObject.GetComponent<SpriteRenderer>().sprite = GameAssets.instance.miniGarbage;
         miniGarbageGameObject.transform.position = new Vector3(garbageGridPosition.x, garbageGridPosition.y);
 
@@ -57,9 +57,9 @@ public class LevelGrid
         if (index < Constants.totalGarbageElements / 2)
             ge.isBiodegradable = 1;
         else
-            ge.isBiodegradable = 0; 
+            ge.isBiodegradable = 0;
 
-
+        ge.garbageName = GameAssets.instance.garbageName[index];
         garbageObjectArray.Add(ge);
     }
 
@@ -88,7 +88,7 @@ public class LevelGrid
             {
                 garbageObjectArray.Remove(garbageIterator);
                 if (!truck.isPopUpSet)
-                    action = truck.Classify(garbageIterator.isBiodegradable); //Add Clasification
+                    action = truck.Classify(garbageIterator.isBiodegradable,garbageIterator.garbageElement.GetComponent<SpriteRenderer>().sprite,garbageIterator.garbageName); //Add Clasification
                 else action = "noChange";
 
 
